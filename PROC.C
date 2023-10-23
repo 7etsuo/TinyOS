@@ -11,7 +11,8 @@ struct process * const proc = (struct process * const) PROC_ADDR; /* array of ma
 
 int find_empty_proc_slot() 
 {
-	for (int i = 0; i < MAX_NUM_PROC; i++) {
+	int i;
+	for (i = 0; i < MAX_NUM_PROC; i++) {
 		if (proc[i].state == PROC_INVALID) /* empty proc index found */
 			return i;
 	}

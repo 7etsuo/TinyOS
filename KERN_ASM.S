@@ -1,4 +1,4 @@
-jj					xdef	_restart
+					xdef	_restart
 					xdef	_load_cpu_context
 				
 					xdef	_exit,_sys_exit
