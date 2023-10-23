@@ -1,0 +1,92 @@
+PROGNAME = os.prg
+ROM = os.img
+
+LD = ld
+CC = cc68x
+AS = gen
+CD = cd
+RM = Rm
+
+CFLAGS= -I.
+#-I..\assets
+ 
+ASFLAGS = -L2
+
+C_OBJ = \
+sched.o \
+cpu.o \
+kernel.o \
+exc.o \
+irq.o \
+conio.o \
+user.o \
+video.o \
+font.o \
+ikbd.o \
+io.o \
+memory.o \
+mfp.o \
+proc.o \
+midi.o
+
+ASM_OBJ = \
+kern_asm.o
+
+OBJ = $(ASM_OBJ) $(C_OBJ)
+
+$(ROM): $(PROGNAME)
+	!burnroms
+
+$(PROGNAME): $(OBJ)
+	$(LD) -o $(PROGNAME) $(OBJ)
+
+sched.o: sched.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+cpu.o: cpu.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+kernel.o: kernel.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+exc.o: exc.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+irq.o: irq.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+conio.o: conio.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+user.o: user.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+video.o: video.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+font.o: font.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+ikbd.o: ikbd.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+io.o: io.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+memory.o: memory.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+mfp.o: mfp.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+proc.o: proc.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+midi.o: midi.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+kern_asm.o: kern_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+
+clean:
+	!$(RM) $(PROGNAME) $(OBJ) $(ROM)
