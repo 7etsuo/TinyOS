@@ -11,16 +11,16 @@
     3				write
     4				read
     5				get_pid
-    6				(reserved)				(adjust priority?)
+    6				(reserved)		(adjust priority?)
     7				yield
-    8				wait
+    8				wait			(not implementedd)
     9				(reserved)
-    10				semaphore operation
+    10				semaphore operation	(not implemented)
     11				(reserved)
-    12				open
-    13				close
-    14				create_file
-    15				delete_file
+    12				open			(not implemented)
+    13				close			(not implemented)
+    14				create_file		(not implemented)
+    15				delete_file		(not implemented)
     */
 
 #define HBL_VECTOR     26
