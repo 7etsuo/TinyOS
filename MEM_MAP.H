@@ -11,7 +11,7 @@
  */
 
 /* 000 - 13F vector table */
-#define VECTOR_TABLE_ADDR        0x000000 
+#define VECTOR_TABLE_ADDR        0x000000
 
 /* 140-5FF kernel data (1216 bytes) */
 /* 140 - 1FF misc */
@@ -65,6 +65,6 @@
 #define IKBD_ACIA_SR_ADDR   0xFFFC00
 #define IKBD_ACIA_RDR_ADDR  0xFFFC02
 
-#define MIDI_ACIA_CR_ADDR   0xFFFC04 
+#define MIDI_ACIA_CR_ADDR   0xFFFC04
 
 #endif /* MEM_MAP_H */

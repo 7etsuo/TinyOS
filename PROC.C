@@ -60,19 +60,22 @@ void load(UINT16 i, void (*p)())
 {
 	struct process *c = proc + i;
 
-	c->cpu_context.usp = (UINT32)get_video_base() - ((UINT32)i << 8);
-	c->cpu_context.pc = (UINT32)p;
-	c->cpu_context.sr = 0x0200;
+	c->cpu_context.usp = (UINT32)get_video_base() - ((UINT32)i << 8); /* offsets the stack pointer by a multiple of 256 bytes and the proc number */
+	c->cpu_context.pc = (UINT32)p;	/* sets pc to the user program base address */ 
+	c->cpu_context.sr = 0x0200; /* sets the status register to interrupt level 2 and clears the Supervisor State */
 
-	c->state = PROC_READY;
+	c->state = PROC_READY;		/* put process into ready state */
 	c->pid = i;                /* [TO DO] partially decouple pid from process table index */
 	c->parent = CURR_PROC;     /* [TO DO] deal with root process? */
 }
 
 void terminate()
 {
-	if (*curr_proc == *kybd_fg_proc)
-		*kybd_fg_proc = CURR_PROC->parent->pid;     /* [TO DO] handle case where parent has terminated! */
+	if (CURR_PROC->parent != NULL &&
+			CURR_PROC->parent->state != PROC_INVALID &&
+			*curr_proc == *kybd_fg_proc) {
+		*kybd_fg_proc = CURR_PROC->parent->pid;
+	}
 
 	CURR_PROC->state = PROC_INVALID;
 	schedule();

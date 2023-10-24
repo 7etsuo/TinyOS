@@ -15,8 +15,8 @@ extern IO_PORT8 VIDEO_REZ_REG;
 
 /* UINT8 *get_video_base(); */
 extern void clear_screen(UINT8 *base);
-void plot_glyph(UINT8 ch);
 extern void scroll();
+void plot_glyph(UINT8 ch);
 void invert_cursor();
 void reset_cursor();
 void clear_cursor();
