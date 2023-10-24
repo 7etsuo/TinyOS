@@ -3,26 +3,24 @@
 
 #include "types.h"
 
-/*  system call #:	name:
-
-    0				(reserved)
-    1				exit
-    2				create_process
-    3				write
-    4				read
-    5				get_pid
-    6				(reserved)		(adjust priority?)
-    7				yield
-    8				wait			(not implementedd)
-    9				(reserved)
-    10				semaphore operation	(not implemented)
-    11				(reserved)
-    12				open			(not implemented)
-    13				close			(not implemented)
-    14				create_file		(not implemented)
-    15				delete_file		(not implemented)
-    */
-
+/*  Vector #:   system call #:	name:			details:
+    32           0		(reserved)	        (reserved for SCI expansion)
+    33           1		exit
+    34           2		create_process
+    35           3		write
+    36           4		read
+    37           5		get_pid
+    38           6		(reserved)		(reserved for SCI expansion adjust priority?)
+    39           7		yield
+    40           8		wait			(not implementedd)
+    41           9		(reserved)		(reserved for SCI expansion)
+    42          10		semaphore operation	(not implemented)
+    43          11		(reserved)		(reserved for SCI expansion)
+    44          12		open			(not implemented)
+    45          13		close			(not implemented)
+    46          14		create_file		(not implemented)
+    47          15		delete_file		(not implemented) 
+*/
 #define HBL_VECTOR     26
 #define VBL_VECTOR     28
 #define TRAP_1_VECTOR  33     /* exit           */
