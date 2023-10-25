@@ -122,40 +122,40 @@
 /** 
  * @breif MFP Register Offsets 
  */
-#define MFP_PDR	    (MFP_BASE_ADDR + 0x01)
-#define MFP_AER     (MFP_BASE_ADDR + 0x03)
-#define MFP_DIR     (MFP_BASE_ADDR + 0x05)
-#define MFP_IEA     (MFP_BASE_ADDR + 0x07)
-#define MFP_IEB     (MFP_BASE_ADDR + 0x09)
-#define MFP_IPA     (MFP_BASE_ADDR + 0x0B)
-#define MFP_IPB     (MFP_BASE_ADDR + 0x0D)
-#define MFP_ISA     (MFP_BASE_ADDR + 0x0F)
-#define MFP_ISB     (MFP_BASE_ADDR + 0x11)
-#define MFP_IMA     (MFP_BASE_ADDR + 0x13)
-#define MFP_IMB     (MFP_BASE_ADDR + 0x15)
-#define MFP_VCR     (MFP_BASE_ADDR + 0x17)
-#define MFP_TAC     (MFP_BASE_ADDR + 0x19)
-#define MFP_TBC     (MFP_BASE_ADDR + 0x1B)
-#define MFP_TDC     (MFP_BASE_ADDR + 0x1D)
-#define MFP_TAD     (MFP_BASE_ADDR + 0x1F)
-#define MFP_TBD     (MFP_BASE_ADDR + 0x21)
-#define MFP_TCD     (MFP_BASE_ADDR + 0x23)
-#define MFP_TDD     (MFP_BASE_ADDR + 0x25)
-#define MFP_SYC     (MFP_BASE_ADDR + 0x27)
-#define MFP_UCR     (MFP_BASE_ADDR + 0x29)
-#define MFP_RES     (MFP_BASE_ADDR + 0x2B)
-#define MFP_TRS     (MFP_BASE_ADDR + 0x2D)
-#define MFP_UAD     (MFP_BASE_ADDR + 0x2F)
+#define MFP_PDR_ADDR	(MFP_BASE_ADDR + 0x01)
+#define MFP_AER_ADDR	(MFP_BASE_ADDR + 0x03)
+#define MFP_DIR_ADDR	(MFP_BASE_ADDR + 0x05)
+#define MFP_IEA_ADDR	(MFP_BASE_ADDR + 0x07)
+#define MFP_IEB_ADDR	(MFP_BASE_ADDR + 0x09)
+#define MFP_IPA_ADDR	(MFP_BASE_ADDR + 0x0B)
+#define MFP_IPB_ADDR	(MFP_BASE_ADDR + 0x0D)
+#define MFP_ISA_ADDR	(MFP_BASE_ADDR + 0x0F)
+#define MFP_ISB_ADDR	(MFP_BASE_ADDR + 0x11)
+#define MFP_IMA_ADDR	(MFP_BASE_ADDR + 0x13)
+#define MFP_IMB_ADDR	(MFP_BASE_ADDR + 0x15)
+#define MFP_VCR_ADDR	(MFP_BASE_ADDR + 0x17)
+#define MFP_TAC_ADDR	(MFP_BASE_ADDR + 0x19)
+#define MFP_TBC_ADDR	(MFP_BASE_ADDR + 0x1B)
+#define MFP_TDC_ADDR	(MFP_BASE_ADDR + 0x1D)
+#define MFP_TAD_ADDR	(MFP_BASE_ADDR + 0x1F)
+#define MFP_TBD_ADDR	(MFP_BASE_ADDR + 0x21)
+#define MFP_TCD_ADDR	(MFP_BASE_ADDR + 0x23)
+#define MFP_TDD_ADDR	(MFP_BASE_ADDR + 0x25)
+#define MFP_SYC_ADDR	(MFP_BASE_ADDR + 0x27)
+#define MFP_UCR_ADDR	(MFP_BASE_ADDR + 0x29)
+#define MFP_RES_ADDR	(MFP_BASE_ADDR + 0x2B)
+#define MFP_TRS_ADDR	(MFP_BASE_ADDR + 0x2D)
+#define MFP_UAD_ADDR	(MFP_BASE_ADDR + 0x2F)
 
-#define MFP_IERA_ADDR	MFP_IEA /* 0xFFFA07 */
-#define MFP_IERB_ADDR  	MFP_IEB /* 0xFFFA09 */
-#define MFP_ISRA_ADDR  	MFP_ISA /* 0xFFFA0F */
-#define MFP_ISRB_ADDR  	MFP_ISB /* 0xFFFA11 */ 
-#define MFP_IMRA_ADDR  	MFP_IMA /* 0xFFFA13 */
-#define MFP_IMRB_ADDR  	MFP_IMB /* 0xFFFA15 */
-#define MFP_VR_ADDR    	MFP_VCR /* 0xFFFA17 */
-#define MFP_TACR_ADDR  	MFP_TAC /* 0xFFFA19 */
-#define MFP_TADR_ADDR  	MFP_TAD /* 0xFFFA1F */
+#define MFP_IERA_ADDR	MFP_IEA_ADDR /* 0xFFFA07 */
+#define MFP_IERB_ADDR  	MFP_IEB_ADDR /* 0xFFFA09 */
+#define MFP_ISRA_ADDR  	MFP_ISA_ADDR /* 0xFFFA0F */
+#define MFP_ISRB_ADDR  	MFP_ISB_ADDR /* 0xFFFA11 */ 
+#define MFP_IMRA_ADDR  	MFP_IMA_ADDR /* 0xFFFA13 */
+#define MFP_IMRB_ADDR  	MFP_IMB_ADDR /* 0xFFFA15 */
+#define MFP_VR_ADDR    	MFP_VCR_ADDR /* 0xFFFA17 */
+#define MFP_TACR_ADDR  	MFP_TAC_ADDR /* 0xFFFA19 */
+#define MFP_TADR_ADDR  	MFP_TAD_ADDR /* 0xFFFA1F */
 
 /** 
  * @brief IKBD (Keyboard) ACIA (Asynchronous Communications Interface Adapter) register addresses.
