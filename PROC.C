@@ -40,8 +40,9 @@ int do_create_process(UINT16 prog_num, UINT16 is_fg)
 
 	load(index, prog[prog_num]);
 
-	if (is_fg)
+	if (is_fg) {
 		return set_kybd_fg_proc(index);
+	}
 
 	return 1;
 }
@@ -62,20 +63,17 @@ void load(UINT16 i, void (*p)())
 
 	c->cpu_context.usp = (UINT32)get_video_base() - ((UINT32)i << 8); /* offsets the stack pointer by a multiple of 256 bytes and the proc number */
 	c->cpu_context.pc = (UINT32)p;	/* sets pc to the user program base address */ 
-	c->cpu_context.sr = 0x0200;		/* sets the status register to interrupt level 2 and clears the Supervisor State */
+	c->cpu_context.sr = 0x0200; /* sets the status register to interrupt level 2 and clears the Supervisor State */
 
 	c->state = PROC_READY;		/* put process into ready state */
-	c->pid = i;					/* [TO DO] partially decouple pid from process table index */
-	c->parent = CURR_PROC;		/* [TO DO] deal with root process? */
+	c->pid = i;                /* [TO DO] partially decouple pid from process table index */
+	c->parent = CURR_PROC;     /* [TO DO] deal with root process? */
 }
 
 void terminate()
 {
-	if (CURR_PROC->parent != NULL &&
-			CURR_PROC->parent->state != PROC_INVALID &&
-			*curr_proc == *kybd_fg_proc) {
-		*kybd_fg_proc = CURR_PROC->parent->pid;
-	}
+	if (*curr_proc == *kybd_fg_proc)
+		*kybd_fg_proc = CURR_PROC->parent->pid; /* [TO DO] handle case where parent has terminated! */
 
 	CURR_PROC->state = PROC_INVALID;
 	schedule();
@@ -89,6 +87,6 @@ int do_get_pid()
 void do_yield()
 {
 	CURR_PROC->state = PROC_READY;
-	*resched_needed = YES;
+	*resched_needed = 1;
 }
 

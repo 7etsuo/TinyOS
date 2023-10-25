@@ -1,6 +1,9 @@
+					xdef	_reboot,_sys_reboot
+					xref	_do_reboot
+
 					xdef	_restart
 					xdef	_load_cpu_context
-				
+
 					xdef	_exit,_sys_exit
 					xref	_do_exit
 					
@@ -139,11 +142,16 @@ _sys_create_process:
 					movem.l	(sp)+,d0-2/a0-2
 					jsr		pre_return
 					rte
+
+_reboot:			trap	#0		; no parameter
+
+_sys_reboot:		jsr	_do_reboot	; doesn't return
+					jsr	_panic
+
+_exit:				trap	#1		; no parameter
 					
-_exit:				trap	#1						; no parameter
-					
-_sys_exit:			jsr		_do_exit				; doesn't return
-					jsr		_panic
+_sys_exit:			jsr	_do_exit	; doesn't return
+					jsr	_panic
 
 _write:				link	a6,#0
 					move.w	12(a6),-(sp)

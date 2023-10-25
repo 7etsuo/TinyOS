@@ -1,6 +1,15 @@
 #include "types.h"
+#include "reboot.h" /* needed for reboot macros */
 #include "user.h"
 #include "syscalls.h"
+
+const Vector prog[] = {
+	shell,
+	hello,
+	user_reboot,
+	user_program_3,
+	user_program_4
+};
 
 void shell()
 {
@@ -34,23 +43,10 @@ void hello()
 	exit();
 }
 
-void user_program_2()
+void user_reboot()
 {
-	volatile UINT32 i;
-	int printed = 0;
-
-	while (printed < 10)
-	{
-		for (i = 0; i < 30000L; i++)
-			;
-
-		write("B", 1);
-
-		if (++printed == 5)
-			create_process(3, 0);
-	}
-
-	exit();
+	reboot();
+	exit(); /* never returns */
 }
 
 void user_program_3()

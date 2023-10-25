@@ -12,5 +12,4 @@ typedef void (*Vector)();
 typedef volatile UINT8 * const IO_PORT8;
 typedef volatile const UINT8 * const IO_PORT8_RO;
 
-
 #endif

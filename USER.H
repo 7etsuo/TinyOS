@@ -7,18 +7,11 @@
 
 void shell();
 void hello();
-void user_program_2();
+void user_reboot();
 void user_program_3();
 void user_program_4();
 
-const Vector prog[] =
-{
-	shell,
-	hello,
-	user_program_2,
-	user_program_3,
-	user_program_4
-};
+extern const Vector prog[];
 
 #endif /* USER_H */
 

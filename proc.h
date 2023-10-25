@@ -9,7 +9,7 @@
 #define PROC_RUNNING 2
 #define PROC_BLOCKED 3
 
-struct process     /* 102 bytes */
+struct process /* 102 bytes */
 {
 	struct CPU_context cpu_context;     /* must be first element in structure */
 	UINT16 state;
@@ -43,13 +43,9 @@ void terminate();
 
 void do_exit();
 int do_get_pid();
-/* function modified by Mike Walker */
 int do_create_process(UINT16 prog_num, UINT16 is_fg); /* [TODO]: we need create_process to return the int from this */
 
-/* helper functions added by Mike Walker*/
 int set_kybd_fg_proc(int index);
 int find_empty_proc_slot();
 
-
 #endif /* PROC_H */
-

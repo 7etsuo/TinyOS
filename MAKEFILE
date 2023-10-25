@@ -27,7 +27,9 @@ io.o \
 memory.o \
 mfp.o \
 proc.o \
-midi.o
+midi.o \
+reboot.o
+
 
 ASM_OBJ = \
 kern_asm.o
@@ -39,6 +41,9 @@ $(ROM): $(PROGNAME)
 
 $(PROGNAME): $(OBJ)
 	$(LD) -o $(PROGNAME) $(OBJ)
+
+reboot.o: reboot.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 sched.o: sched.c
 	$(CC) $(CFLAGS) -c $< -o $@

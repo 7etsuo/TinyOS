@@ -1,7 +1,6 @@
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
-#include "mem_map.h"
 #include "types.h"
 
 extern UINT16 * const vbl_counter;

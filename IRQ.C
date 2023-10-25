@@ -7,6 +7,7 @@
 #include "syscalls.h"
 #include "exc.h"
 #include "ikbd.h"
+#include "mem_map.h"
 
 UINT16 * const vbl_counter = (UINT16 * const) VBL_COUNTER_ADDR;
 Vector * const vector_table = (Vector * const) VECTOR_TABLE_ADDR;
@@ -62,6 +63,7 @@ void init_vector_table()
 		vector_table[num] = exception_isr;
 
 	vector_table[VBL_VECTOR]     = vbl_isr;
+	vector_table[TRAP_0_VECTOR]	 = sys_reboot;
 	vector_table[TRAP_1_VECTOR]  = sys_exit;
 	vector_table[TRAP_2_VECTOR]  = sys_create_process;
 	vector_table[TRAP_3_VECTOR]  = sys_write;

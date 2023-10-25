@@ -2,7 +2,6 @@
 #define IKBD_H
 
 #include "types.h"
-#include "mem_map.h"
 
 extern IO_PORT8    IKBD_ACIA_CR;
 extern IO_PORT8_RO IKBD_ACIA_SR;
