@@ -21,9 +21,9 @@
 /** 
  * @breif Bit Manipulation Macros 
  */
-#define SET_BIT(reg, bit)   (*(IO_PORT8)(reg) |= (1 << (bit)))
-#define CLEAR_BIT(reg, bit) (*(IO_PORT8)(reg) &= ~(1 << (bit)))
-#define READ_BIT(reg, bit)  (*(IO_PORT8)(reg) & (1 << (bit)))
+#define SET_BIT(reg, bit)   (*(reg) |= (1 << (bit)))
+#define CLEAR_BIT(reg, bit) (*(reg) &= ~(1 << (bit)))
+#define READ_BIT(reg, bit)  (*(reg) & (1 << (bit)))
 
 /** 
  * @brief Vector table address.
