@@ -89,6 +89,6 @@ int do_get_pid()
 void do_yield()
 {
 	CURR_PROC->state = PROC_READY;
-	*resched_needed = 1;
+	*resched_needed = YES;
 }
 

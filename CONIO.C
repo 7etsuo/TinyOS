@@ -128,8 +128,8 @@ void do_write(const char *buf, unsigned int len)
 int do_read(char *buf, unsigned int len)
 {
 	int num_read = 0, cr_hit = 0;
-	UINT16 orig_ipl = set_ipl(6);     /* need to mask both MFP IRQ and VBL IRQ */
-	/* [TO DO] mask above less aggressively */
+	UINT16 orig_ipl = set_ipl(6);   /* need to mask both MFP IRQ and VBL IRQ */
+									/* [TO DO] mask above less aggressively */
 
 	/* [TO DO] validate buf */
 
@@ -151,8 +151,8 @@ int do_read(char *buf, unsigned int len)
 		{
 			*kybd_blocked_proc = *curr_proc;
 			CURR_PROC->state = PROC_BLOCKED;
-			*resched_needed = 2;                 /* signals the trap will need to be restarted */
-			/* [TO DO] examine completing system call in bottom half, instead */	
+			*resched_needed = YES_BLOCK;		/* signals the trap will need to be restarted */
+												/* [TO DO] examine completing system call in bottom half, instead */	
 		}
 	else
 	{

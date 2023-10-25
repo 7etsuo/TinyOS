@@ -35,6 +35,7 @@
 					xref	_proc,_curr_proc
 					xdef	_clear_screen
 					xdef	_scroll
+
 					xref	_resched_needed
 					xref	_schedule
 					xref	_panic
@@ -59,7 +60,7 @@ _restart:			jmp		start
 					; note: if we attempt to restart in user mode, a privilege violation will
 					;       cause the CPU to vector to "_restart" in supervisor mode
 
-					
+
 _exception_isr:		jsr		_do_exception_isr		; doesn't return
 					jsr		_panic
 
@@ -73,12 +74,21 @@ _vbl_isr:			movem.l	d0-2/a0-2,-(sp)
 					movem.l	(sp)+,d0-2/a0-2
 					jsr		pre_return
 					rte
-
+;
+; subroutines that set and clear _resched_needed
+; do_timer_A_isr	YES
+; _yield			YES
+; do_read			YES_BLOCK
+; schedule			NO
+; 
+; Called after each syscall etc to check if a resched is needed.
+; 
+; pre_return checks if a reschedule is needed then calls 
 ; UINT16 * const curr_proc      = 0x000200;
 ; UINT16 * const resched_needed = 0x000202;			; 0=no, 1=yes, 2=yes with eventual trap restart (blocking) 
 ; struct process * const proc   = 0x000204;			; array of MAX_NUM_PROC (4) process structures 
 pre_return:			cmpi.w	#$2000,4(sp)			; check if S bit was set (xxSx xxxx xxxx xxxx)
-					bhs.s	out2					; ... if invoked from kernel, just return (nested ISR)
+					bhs.s	out2					; ... if invoked from kernel, just return (avoid nested ISRs)
 					move.l	a0,-(sp)				; save the a0 register
 					ori.w	#$0700,sr				; mask IRQs for remainder of return to user
 					movea.l	_resched_needed,a0		; load the address of _resched_needed into a0
@@ -141,7 +151,7 @@ _write:				link	a6,#0
 					trap	#3
 					unlk	a6
 					rts
-					
+
 _sys_write:			move.l	usp,a0
 					move.w	4(a0),-(sp)
 					move.l	(a0),-(sp)

@@ -22,7 +22,7 @@ void schedule()
 			if (CURR_PROC->state == PROC_READY)
 			{
 				CURR_PROC->state = PROC_RUNNING;
-				*resched_needed = 0;
+				*resched_needed = NO;
 				load_cpu_context(&CURR_PROC->cpu_context);
 			}
 		}

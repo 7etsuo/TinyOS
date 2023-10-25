@@ -65,6 +65,7 @@ void clear_cursor()
 		invert_cursor();
 }
 
+/* [TODO] add argument to video_base for double buffering */
 void init_video()
 {	
 	/* move.l #VIDEO_BASE,d0 */ 

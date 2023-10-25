@@ -36,7 +36,7 @@ void do_timer_A_isr(UINT16 sr)
 	if (CURR_PROC->state == PROC_RUNNING)
 	{
 		CURR_PROC->state = PROC_READY;
-		*resched_needed = 1;
+		*resched_needed = YES;
 	}
 
 	*MFP_ISRA &= ~MFP_TIMER_A;
