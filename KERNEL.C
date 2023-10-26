@@ -16,10 +16,9 @@
 
 void init()
 {
-	/* [TO DO] init_memory? */
-	init_IO();
 	init_memory();
 	init_video();
+	init_IO();
 	init_vector_table();
 
 	/* [TO DO]
