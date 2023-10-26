@@ -5,7 +5,7 @@
 
 /* interface for memory configuration and management */
 #include "io.h"				/* init_IO() */
-#include "memory.h" 		/* init_memory() */
+#include "memory.h"	 		/* init_memory() */
 #include "video.h"			/* init_video() */
 #include "irq.h"			/* init_vector_table() */
 #include "conio.h"			/* init_console() */
