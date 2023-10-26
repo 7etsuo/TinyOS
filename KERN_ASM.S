@@ -1,27 +1,28 @@
+; util_asm.s
+			xdef	_restart
+			xdef	_load_cpu_context
+; sc_asm.s
 			xdef	_reboot,_sys_reboot
 			xref	_do_reboot
 
-			xdef	_restart
-			xdef	_load_cpu_context
-
 			xdef	_exit,_sys_exit
 			xref	_do_exit
-					
+
 			xdef	_create_process,_sys_create_process
 			xref	_do_create_process
-					
+
 			xdef	_write,_sys_write
 			xref	_do_write
-					
+
 			xdef	_read,_sys_read
 			xref	_do_read
 
 			xdef	_get_pid,_sys_get_pid
 			xref	_do_get_pid
-					
+
 			xdef	_yield,_sys_yield
 			xref	_do_yield
-					
+; kern_asm.s
 			xdef	_vbl_isr
 			xref	_do_vbl_isr
 			xdef	_addr_exception_isr
@@ -35,10 +36,11 @@
 			xref	_do_timer_A_isr
 			xdef	_ikbd_isr
 			xref	_do_ikbd_isr
+
 			xref	_proc,_curr_proc
 			xdef	_clear_screen
 			xdef	_scroll
-
+; sched_asm.s
 			xref	_resched_needed
 			xref	_schedule
 			xref	_panic
@@ -61,7 +63,6 @@ _restart:
 ; note: if we attempt to restart in user mode, a privilege violation will
 ;       cause the CPU to vector to "_restart" in supervisor mode
 
-
 _exception_isr:
 	jsr	_do_exception_isr	; doesn't return
 	jsr	_panic
@@ -69,7 +70,6 @@ _exception_isr:
 _addr_exception_isr:
 	jsr	_do_addr_exception_isr	; doesn't return
 	jsr	_panic
-
 
 _vbl_isr:
 	movem.l	d0-2/a0-2,-(sp)
@@ -180,7 +180,7 @@ _sys_write:
 	addq.l	#6,sp
 	jsr	pre_return
 	rte
-					
+
 _read:
 	link	a6,#0
 	move.w	12(a6),-(sp)

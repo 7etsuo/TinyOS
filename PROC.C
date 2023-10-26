@@ -5,6 +5,7 @@
 #include "sched.h"
 #include "conio.h"
 #include "user.h"
+#include "syscalls.h" /* [TODO] DELETE ME */
 
 UINT16 * const curr_proc    = (UINT16 *const) CURR_PROC_ADDR;
 struct process * const proc = (struct process * const) PROC_ADDR; /* array of max_num_proc (4) process structures */

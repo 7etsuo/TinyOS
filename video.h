@@ -20,7 +20,6 @@ void plot_glyph(UINT8 ch);
 void invert_cursor();
 void reset_cursor();
 void clear_cursor();
-/* added by Mike Walkr */
 void init_video();
 
 #endif /* VIDEO_H */

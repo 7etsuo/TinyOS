@@ -39,7 +39,6 @@ void hello()
 	write("\r\nhello, world from ", 20);
 	write(&pid, 1);
 	write("!\r\n", 3);
-
 	exit();
 }
 

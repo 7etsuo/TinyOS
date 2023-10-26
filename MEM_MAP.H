@@ -96,9 +96,10 @@
 #define VIDEO_BASE          0x3F8000 /* frame buffer address */
 
 /** 
- * @brief Memory configuration register address.
+ * @brief Memory configuration register address. => Memory Controller 
  */
-#define MEM_CONFIG_REG_ADDR 0xFF8001
+#define MEM_CTL_REG_ADDR 0xFF8001
+/* $FFFF8001.B|RW|MEM_CTL|Memory Controller */
 
 /** 
  * @brief Video-related register addresses.

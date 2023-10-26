@@ -2,7 +2,7 @@
 #include "mem_map.h"
 #include "types.h"
 
-IO_PORT8 MEM_CONFIG_REG = (IO_PORT8) MEM_CONFIG_REG_ADDR;
+IO_PORT8 MEM_CONFIG_REG = (IO_PORT8) MEM_CTL_REG_ADDR;
 
 void init_memory()
 {
