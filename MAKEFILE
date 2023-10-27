@@ -8,17 +8,20 @@ CD = cd
 RM = Rm
 
 CFLAGS= -I. \
--I\audio \
--I\disks \
--I\docs \
--I\hal \
--I\int \
--I\kb \
--I\kern \
--I\raster \
--I\schd \
--I\user \
--I\vid
+-Iaudio \
+-Idisks \
+-Idocs \
+-Ihal \
+-Iint \
+-Ikb \
+-Ikern \
+-Iraster \
+-Ischd \
+-Iuser \
+-Ivid \
+-W6 \
+-O \
+-g      
 
 ASFLAGS = -L2
 
@@ -54,7 +57,7 @@ $(ROM): $(PROGNAME)
 	!burnroms
 
 $(PROGNAME): $(OBJ)
-	$(CC) -o $(PROGNAME) $(OBJ)
+	$(LD) -o $(PROGNAME) $(OBJ)
 
 obj\kernel.o: kern\kernel.c
 	$(CC) $(CFLAGS) -c $< -o $@

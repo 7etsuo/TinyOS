@@ -1,0 +1,35 @@
+Optimized Code:
+
+-O: Enables full optimization.
+Debugging:
+
+-g: Compiles the code for use with a debugger.
+Verbose Output:
+
+-v: Provides verbose output showing what the compiler is doing. Using -v -v will show additional version information about the various passes.
+Warning Levels:
+
+-W6: To get the pickiest warnings and catch potential issues.
+Preprocessing:
+
+-E: Preprocesses to stdout.
+-P: Preprocesses but doesn't compile.
+Code Generation:
+
+-S: Compiles but doesn't assemble.
+Header and Library Paths:
+
+-I<path>: Adds a specified path to the header file search list.
+-l<name>: Links with the specified library. Make sure to check the library naming schemes (Unix-style or TOS-style) mentioned in the documentation.
+Integer Size:
+
+-mshort: Sets sizeof(int) to 2 (default).
+-mlong: Sets sizeof(int) to 4. Be aware that this affects the naming of system libraries.
+Code Standards:
+
+-ansi: Compiles in ANSI mode.
+-trad: Compiles in K&R mode.
+Temporary Files:
+
+-t: Prevents the removal of temporary files.
+It's essential to test the chosen flags in your development environment to ensure they produce the desired results and don't introduce unintended side effects. If unsure, starting with flags like -O, -W6, and -g (for debugging) can be beneficial. Adjust the flags as you refine your needs.
