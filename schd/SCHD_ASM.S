@@ -3,14 +3,13 @@
 			xdef	_store_cpu_context
 			xdef	_pre_return
 ; c refs
-			xref	_kernel_stack_top	; initial SSP 
 			xref	_proc,_curr_proc	; struct process 102 bytes
 			xref	_resched_needed		; kernel data variable 
 			xref	_schedule		; function
 
 CPU_CONTEXT_SIZE	equ		70
 PROCESS_ENTRY_SIZE	equ		102
-OS_RAM_TOP		equ		$000800 
+OS_RAM_TOP		equ		$000800		; initial SSP 
 
 ; subroutines that set and clear _resched_needed
 ; do_timer_A_isr	YES

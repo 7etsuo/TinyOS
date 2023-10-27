@@ -1,7 +1,7 @@
 ; sys_asm.s
+			xdef	_create_process,_sys_create_process
 			xdef	_reboot,_sys_reboot
 			xdef	_exit,_sys_exit
-			xdef	_create_process,_sys_create_process
 			xdef	_write,_sys_write
 			xdef	_read,_sys_read
 			xdef	_get_pid,_sys_get_pid
@@ -9,12 +9,11 @@
 ; kern_asm.s
 			xref	_restart
 			xref	_pre_return
-; crefs
 			xref	_panic
 ; c syscall implementation
+			xref	_do_create_process
 			xref	_do_reboot
 			xref	_do_exit
-			xref	_do_create_process
 			xref	_do_write
 			xref	_do_read
 			xref	_do_get_pid
