@@ -26,7 +26,7 @@ void shell()
 		if (command > 0 && command < 5)
 		{
 			create_process(command, 0);
-			/* [TO DO] wait */
+			yield(); /* [TO DO] wait */
 		}
 	}
 }
