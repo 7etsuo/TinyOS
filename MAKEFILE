@@ -8,7 +8,10 @@ CD = cd
 RM = Rm
 
 CFLAGS= -I.
-#-I..\assets
+-I.\kern \
+-I.\keyboard \
+-I.\scheduler \
+-I.\vid
  
 ASFLAGS = -L2
 
@@ -16,7 +19,7 @@ C_OBJ = \
 sched.o \
 cpu.o \
 kernel.o \
-exc.o \
+isr.o \
 irq.o \
 conio.o \
 user.o \
@@ -54,7 +57,7 @@ cpu.o: cpu.c
 kernel.o: kernel.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-exc.o: exc.c
+isr.o: isr.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 irq.o: irq.c
