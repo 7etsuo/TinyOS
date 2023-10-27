@@ -2,10 +2,9 @@
 #include "sched.h"
 #include "../types.h"
 #include "../vid/video.h"
-#include "../keyboard/ikbd.h"
-#include "../keyboard/conio.h"
-#include "../user/user_prog.h"
-#include "../kern/syscalls.h" /* [TODO] DELETE ME */
+#include "../kb/ikbd.h"
+#include "../kb/conio.h"
+#include "../user/usrprg.h"
 
 UINT16 * const curr_proc    = (UINT16 *const) CURR_PROC_ADDR;
 struct process * const proc = (struct process * const) PROC_ADDR; /* array of max_num_proc (4) process structures */

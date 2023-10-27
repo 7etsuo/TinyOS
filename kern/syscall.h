@@ -1,6 +1,5 @@
-#ifndef SYSCALLS_H
-#define SYSCALLS_H
-
+#ifndef SYSCALL_H
+#define SYSCALL_H
 
 #include "../types.h"
 
@@ -33,23 +32,27 @@
  * @{
  */
 
-
 extern void reboot();                 /**< System function to reboot the system. */
-extern void exit();                   /**< System function to exit a process. */
-extern void create_process(UINT16 prog_num, UINT16 is_fg);  /**< System function to create a new process. */
-extern void write(const char *buf, unsigned int len);       /**< System function to write data. */
-extern int read(char *buf, unsigned int len);               /**< System function to read data. */
-extern int get_pid();                /**< System function to get the process ID. */
-extern void yield();                 /**< System function for a process to yield its execution. */
-
 extern void sys_reboot();            /**< System reboot function. */
+
+extern void exit();                  /**< System function to exit a process. */
 extern void sys_exit();              /**< System exit function. */
+
+extern void create_process(UINT16 prog_num, UINT16 is_fg);  /**< System function to create a new process. */
 extern void sys_create_process();    /**< System function to create a process. */
+
+extern void write(const char *buf, unsigned int len);       /**< System function to write data. */
 extern void sys_write();             /**< System write function. */
+
+extern int read(char *buf, unsigned int len);               /**< System function to read data. */
 extern void sys_read();              /**< System read function. */
+
+extern int get_pid();                /**< System function to get the process ID. */
 extern void sys_get_pid();           /**< System function to get process ID. */
+
+extern void yield();                 /**< System function for a process to yield its execution. */
 extern void sys_yield();             /**< System yield function. */
 /** @} */
 
-#endif /* SYSCALLS_H */
+#endif /* SYSCALL_H */
 

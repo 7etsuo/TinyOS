@@ -1,7 +1,6 @@
-#include "user_prog.h"
+#include "../kern/syscall.h"
 #include "../types.h"
-#include "../kern/reboot.h" /* needed for reboot macros */
-#include "../kern/syscalls.h"
+#include "usrprg.h"
 
 const Vector prog[] = {
 	shell,
@@ -45,7 +44,6 @@ void hello()
 void user_reboot()
 {
 	reboot();
-	exit(); /* never returns */
 }
 
 void user_program_3()

@@ -1,10 +1,10 @@
 #include "video.h"
 #include "../types.h"
-#include "../keyboard/conio.h"
-#include "../interrupt/irq.h"
+#include "../kb/conio.h"
+#include "../int/irq.h"
 #include "../hal/mem_map.h"
 #include "../raster/font.h"
-#include "../interrupt/isr.h"
+#include "../int/isr.h"
 
 #define TEXT_OFFSET (get_video_base() + (UINT16)*console_y_p*640 + *console_x_p)
 

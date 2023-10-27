@@ -5,15 +5,15 @@
 #include "kernel.h"
 
 /* interface for memory configuration and management */
-#include "../keyboard/io.h"		/* init_IO() */
+#include "../kb/io.h"		/* init_IO() */
 #include "../kern/memory.h" 		/* init_memory() */
 #include "../vid/video.h"		/* init_video() */
-#include "../interrupt/irq.h"		/* init_vector_table() */
-#include "../keyboard/conio.h"		/* init_console() */
+#include "../int/irq.h"		/* init_vector_table() */
+#include "../kb/conio.h"		/* init_console() */
 
 /* process table and scheduler */
-#include "../scheduler/proc.h"		/* init_proc_table() and do_create_process() */
-#include "../scheduler/sched.h"		/* schedule() */
+#include "../schd/proc.h"		/* init_proc_table() and do_create_process() */
+#include "../schd/sched.h"		/* schedule() */
 
 /* 600-7FF kernel stack (512 bytes) */
 UINT16 * const kernel_stack_top = (UINT16 *const) OS_RAM_TOP; 

@@ -3,17 +3,17 @@
 #include "../types.h"
 #include "../hal/mfp.h"
 #include "../hal/mem_map.h"
-#include "../keyboard/ikbd.h"
-#include "../scheduler/proc.h"
-#include "../scheduler/sched.h"
-#include "../keyboard/conio.h"
-#include "../scheduler/cpu.h"
+#include "../kb/ikbd.h"
+#include "../schd/proc.h"
+#include "../schd/sched.h"
+#include "../kb/conio.h"
+#include "../schd/cpu.h"
 #include "../kern/kernel.h"
 #include "../vid/video.h"
 #include "../hal/acia.h"
 
 UINT16 * const vbl_counter = (UINT16 * const) VBL_COUNTER_ADDR;
-extern UINT16 * const kybd_isr_state = (UINT16 * const) KYBD_ISR_STATE_ADDR; 
+UINT16 * const kybd_isr_state = (UINT16 * const) KYBD_ISR_STATE_ADDR; 
 
 void do_vbl_isr()
 {

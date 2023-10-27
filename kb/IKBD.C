@@ -1,7 +1,7 @@
 #include "conio.h"
 #include "../hal/acia.h"
-#include "../keyboard/ikbd.h"
-#include "../scheduler/proc.h"
+#include "../kb/ikbd.h"
+#include "../schd/proc.h"
 
 IO_PORT8    IKBD_ACIA_CR		= (IO_PORT8) IKBD_ACIA_CR_ADDR;
 IO_PORT8_RO IKBD_ACIA_SR		= (IO_PORT8_RO) IKBD_ACIA_SR_ADDR ;

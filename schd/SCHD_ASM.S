@@ -2,9 +2,10 @@
 			xdef	_load_cpu_context
 			xdef	_pre_return
 ; c refs
+			xref	_kernel_stack_top	; initial SSP 
 			xref	_proc,_curr_proc	; struct process 102 bytes
 			xref	_resched_needed		; kernel data variable 
-			xref	_schedule		; function
+			xref	_schedule			; function
 
 CPU_CONTEXT_SIZE	equ		70
 PROCESS_ENTRY_SIZE	equ		102
@@ -50,7 +51,7 @@ out2:
 ; dispatcher
 _load_cpu_context:
 	movea.l	4(sp),a0	; Load the address of CPU_context struct
-	movea.l	#OS_RAM_TOP,sp	; Set kernel stack pointer
+	movea.l	_kernel_stack_top,sp	; set up the kernel stack pointer.initial SSP
 	move.l	(a0)+,-(sp)	; Move 4 bytes (PC)
 	move.w	(a0)+,-(sp)	; Move 2 bytes (SR)
 	movea.l	(a0)+,a1	; Move 4 bytes (USP)

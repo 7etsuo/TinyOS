@@ -1,9 +1,10 @@
 #include "ikbd.h"
 #include "conio.h"
 #include "../types.h"
-#include "../scheduler/proc.h"
-#include "../scheduler/sched.h"
-#include "../scheduler/cpu.h"
+#include "../schd/proc.h"
+#include "../schd/sched.h"
+#include "../int/isr.h"
+#include "../schd/cpu.h"
 #include "../raster/font.h"
 #include "../vid/video.h"
 

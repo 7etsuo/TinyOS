@@ -1,5 +1,5 @@
 #include "reboot.h"
-#include "syscalls.h"
+#include "syscall.h"
 
 extern void restart();
 

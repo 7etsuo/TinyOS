@@ -7,94 +7,102 @@ AS = gen
 CD = cd
 RM = Rm
 
-CFLAGS= -I.
--I.\kern \
--I.\keyboard \
--I.\scheduler \
--I.\vid
- 
+CFLAGS= -I. \
+-I\audio \
+-I\disks \
+-I\docs \
+-I\hal \
+-I\int \
+-I\kb \
+-I\kern \
+-I\raster \
+-I\schd \
+-I\user \
+-I\vid
+
 ASFLAGS = -L2
 
 C_OBJ = \
-sched.o \
-cpu.o \
-kernel.o \
-isr.o \
-irq.o \
-conio.o \
-user.o \
-video.o \
-font.o \
-ikbd.o \
-io.o \
-memory.o \
-mfp.o \
-proc.o \
-midi.o \
-reboot.o
-
+obj\kernel.o \
+obj\memory.o \
+obj\reboot.o \
+obj\midi.o \
+obj\mfp.o \
+obj\irq.o \
+obj\isr.o \
+obj\conio.o \
+obj\ikbd.o \
+obj\io.o \
+obj\font.o \
+obj\cpu.o \
+obj\proc.o \
+obj\sched.o \
+obj\usrprg.o \
+obj\video.o
 
 ASM_OBJ = \
-kern_asm.o
+obj\sys_asm.o \
+obj\kern_asm.o \
+obj\isr_asm.o \
+obj\vid_asm.o \
+obj\proc_asm.o \
+obj\schd_asm.o
 
-OBJ = $(ASM_OBJ) $(C_OBJ)
+OBJ = $(ASM_OBJ) $(C_OBJ) 
 
 $(ROM): $(PROGNAME)
 	!burnroms
 
 $(PROGNAME): $(OBJ)
-	$(LD) -o $(PROGNAME) $(OBJ)
+	$(CC) -o $(PROGNAME) $(OBJ)
 
-reboot.o: reboot.c
+obj\kernel.o: kern\kernel.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\memory.o: kern\memory.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\reboot.o: kern\reboot.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\midi.o: audio\midi.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\mfp.o: hal\mfp.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\irq.o: int\irq.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\isr.o: int\isr.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\conio.o: kb\conio.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\ikbd.o: kb\ikbd.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\io.o: kb\io.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\font.o: raster\font.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\cpu.o: schd\cpu.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\proc.o: schd\proc.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\sched.o: schd\sched.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\usrprg.o: user\usrprg.c
+	$(CC) $(CFLAGS) -c $< -o $@
+obj\video.o: vid\video.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-sched.o: sched.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-cpu.o: cpu.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-kernel.o: kernel.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-isr.o: isr.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-irq.o: irq.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-conio.o: conio.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-user.o: user.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-video.o: video.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-font.o: font.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-ikbd.o: ikbd.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-io.o: io.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-memory.o: memory.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-mfp.o: mfp.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-proc.o: proc.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-midi.o: midi.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-kern_asm.o: kern_asm.s
+# Assembly files
+obj\kern_asm.o: kern\kern_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+obj\vid_asm.o: vid\vid_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+obj\isr_asm.o: int\isr_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+obj\proc_asm.o: schd\proc_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+obj\schd_asm.o: schd\schd_asm.s
+	$(AS) $(ASFLAGS) $< -o$@
+obj\sys_asm.o: kern\sys_asm.s
 	$(AS) $(ASFLAGS) $< -o$@
 
 clean:
-	!$(RM) $(PROGNAME) $(OBJ) $(ROM)
+	!$(RM) $(PROGNAME) $(ROM) $(OBJ)
+
