@@ -1,11 +1,12 @@
 ; schd_asm.s
 			xdef	_load_cpu_context
+			xdef	_store_cpu_context
 			xdef	_pre_return
 ; c refs
 			xref	_kernel_stack_top	; initial SSP 
 			xref	_proc,_curr_proc	; struct process 102 bytes
 			xref	_resched_needed		; kernel data variable 
-			xref	_schedule			; function
+			xref	_schedule		; function
 
 CPU_CONTEXT_SIZE	equ		70
 PROCESS_ENTRY_SIZE	equ		102
@@ -23,8 +24,8 @@ PROCESS_ENTRY_SIZE	equ		102
 ; UINT16 * const resched_needed = 0x000202;	; 0=no, 1=yes, 2=yes with eventual trap restart (blocking) 
 ; struct process * const proc   = 0x000204;	; array of MAX_NUM_PROC (4) process structures 
 _pre_return:
-	cmpi.w	#$2000,4(sp)	; check if S bit was set (xxSx xxxx xxxx xxxx)
-	bhs.s	out2		; ... if invoked from kernel, just return (avoid nested ISRs)
+	cmpi.w	#$2000,4(sp)		; check if S bit was set (xxSx xxxx xxxx xxxx)
+	bhs.s	out2			; ... if invoked from kernel, just return (avoid nested ISRs)
 	move.l	a0,-(sp)		; save the a0 register
 	ori.w	#$0700,sr		; mask IRQs for remainder of return to user
 	movea.l	_resched_needed,a0	; load the address of _resched_needed into a0

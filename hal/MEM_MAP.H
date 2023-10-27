@@ -89,28 +89,27 @@
  */
 /* end kernel data */
 /* 600-7FF kernel stack (512 bytes) */
-#define OS_RAM_TOP	    0x000800 /* initial SSP */
+#define OS_RAM_TOP_ADDR		0x000800 /* initial SSP */
 
 /** 
  * @brief Video memory base address.
  */
-#define VIDEO_BASE          0x3F8000 /* frame buffer address */
+#define VIDEO_BASE		0x3F8000 /* frame buffer address */
 
 /** 
  * @brief Memory configuration register address. => Memory Controller 
  */
-#define MEM_CTL_REG_ADDR 0xFF8001
-/* $FFFF8001.B|RW|MEM_CTL|Memory Controller */
+#define MEM_CTL_REG_ADDR	0xFF8001
 
 /** 
  * @brief Video-related register addresses.
  */
-#define VIDEO_BASE_REG_ADDR 0xFF8201
-#define VIDEO_BASE_HI_ADDR  VIDEO_BASE_REG_ADDR
-#define VIDEO_BASE_MID_ADDR 0xFF8203
-#define VIDEO_SYNC_REG_ADDR 0xFF820A
-#define VIDEO_PAL0_REG_ADDR 0xFF8240
-#define VIDEO_REZ_REG_ADDR  0xFF8260
+#define VIDEO_BASE_REG_ADDR 	0xFF8201
+#define VIDEO_BASE_HI_ADDR  	VIDEO_BASE_REG_ADDR
+#define VIDEO_BASE_MID_ADDR 	0xFF8203
+#define VIDEO_SYNC_REG_ADDR 	0xFF820A
+#define VIDEO_PAL0_REG_ADDR 	0xFF8240
+#define VIDEO_REZ_REG_ADDR  	0xFF8260
 
 /** 
  * @brief MFP (Multifunction Peripheral) register addresses.

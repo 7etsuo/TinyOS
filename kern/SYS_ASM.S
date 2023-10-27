@@ -1,11 +1,11 @@
 ; sys_asm.s
-							xdef	_reboot,_sys_reboot
-							xdef	_exit,_sys_exit
-							xdef	_create_process,_sys_create_process
-							xdef	_write,_sys_write
-							xdef	_read,_sys_read
-							xdef	_get_pid,_sys_get_pid
-							xdef	_yield,_sys_yield
+			xdef	_reboot,_sys_reboot
+			xdef	_exit,_sys_exit
+			xdef	_create_process,_sys_create_process
+			xdef	_write,_sys_write
+			xdef	_read,_sys_read
+			xdef	_get_pid,_sys_get_pid
+			xdef	_yield,_sys_yield
 ; kern_asm.s
 			xref	_restart
 			xref	_pre_return

@@ -26,9 +26,6 @@ CFLAGS= -I. \
 ASFLAGS = -L2
 
 C_OBJ = \
-obj\kernel.o \
-obj\memory.o \
-obj\reboot.o \
 obj\midi.o \
 obj\mfp.o \
 obj\irq.o \
@@ -36,6 +33,9 @@ obj\isr.o \
 obj\conio.o \
 obj\ikbd.o \
 obj\io.o \
+obj\kernel.o \
+obj\memory.o \
+obj\reboot.o \
 obj\font.o \
 obj\cpu.o \
 obj\proc.o \
@@ -44,12 +44,12 @@ obj\usrprg.o \
 obj\video.o
 
 ASM_OBJ = \
-obj\sys_asm.o \
-obj\kern_asm.o \
 obj\isr_asm.o \
-obj\vid_asm.o \
+obj\kern_asm.o \
+obj\sys_asm.o \
 obj\proc_asm.o \
-obj\schd_asm.o
+obj\schd_asm.o \
+obj\vid_asm.o
 
 OBJ = $(ASM_OBJ) $(C_OBJ) 
 

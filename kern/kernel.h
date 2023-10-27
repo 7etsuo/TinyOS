@@ -6,7 +6,6 @@
 extern UINT16 * const kernel_stack_top; 
 extern void restart();
 
-
 void init();
 void panic();
 
