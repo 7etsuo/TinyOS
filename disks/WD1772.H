@@ -61,8 +61,11 @@
  *            |  |       | Sector count 0:zero,1:not zero-------------+| |
  *            |  |       | DMA 0:no error,1:error----------------------+ |
  */
+#define	DMA_DATA_REQ_BIT 	0x02
+#define	DMA_SECTOR_CNT_BIT	0x01
+#define	DMA_DMA_ERROR_BIT	0x00
 
-/* DMA Mode Flags (Write)
+/* DMA Mode Flags (Write)			       FEDCBA98 76543210
  *            |-W|       |DMA Mode                    %_______W FD_SHAA_ |
  *            |  |       | 0:read,1:write---------------------+ || ||||  |
  *            |  |       | 0:HDC,1:FDC access-------------------+| ||||  |
@@ -71,5 +74,13 @@
  *            |  |       | 0:FDC,1:HDC access-----------------------+||  |
  *            |  |       | A1/A0 pin 0:low,1:high--------------------++  |
  */
+#define DMA_MODE_RW_BIT		0x08		
+#define DMA_MODE_ACCESS		0x07
+#define DMA_MODE_ON_OFF		0x06
+#define DMA_MODE_SECTOR_CNT	0x05
+#define DMA_MODE_ACCESS2	0x04
+#define DMA_MODE_A1_HI_LOW	0x03
+#define DMA_MODE_A0_HI_LOW	0x02
 
 #endif // WD_H
+

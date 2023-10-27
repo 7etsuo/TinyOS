@@ -7,7 +7,8 @@
 #include "../user/usrprg.h"
 
 UINT16 * const curr_proc    = (UINT16 *const) CURR_PROC_ADDR;
-struct process * const proc = (struct process * const) PROC_ADDR; /* array of max_num_proc (4) process structures */
+/* array of max_num_proc (4) process structures */
+struct process * const proc = (struct process * const) PROC_ADDR; 
 
 int find_empty_proc_slot() 
 {
