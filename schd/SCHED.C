@@ -3,7 +3,8 @@
 #include "cpu.h"
 #include "../hal/mem_map.h"
 
-UINT16 * const resched_needed = (UINT16 *const) RESCHED_NEEDED_ADDR; /* 0=no, 1=yes, 2=yes with eventual trap restart (blocking) */
+/* 0=no, 1=yes, 2=yes with eventual trap restart (blocking) */
+UINT16 * const resched_needed = (UINT16 *const) RESCHED_NEEDED_ADDR; 
 
 void schedule()
 {

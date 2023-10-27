@@ -10,6 +10,7 @@
 
 CPU_CONTEXT_SIZE	equ		70
 PROCESS_ENTRY_SIZE	equ		102
+OS_RAM_TOP		equ		$000800 
 
 ; subroutines that set and clear _resched_needed
 ; do_timer_A_isr	YES
@@ -52,7 +53,7 @@ out2:
 ; dispatcher
 _load_cpu_context:
 	movea.l	4(sp),a0	; Load the address of CPU_context struct
-	movea.l	_kernel_stack_top,sp	; set up the kernel stack pointer.initial SSP
+	movea.l	#OS_RAM_TOP,sp	; set up the kernel stack pointer.initial SSP
 	move.l	(a0)+,-(sp)	; Move 4 bytes (PC)
 	move.w	(a0)+,-(sp)	; Move 2 bytes (SR)
 	movea.l	(a0)+,a1	; Move 4 bytes (USP)
