@@ -111,6 +111,9 @@
 #define VIDEO_PAL0_REG_ADDR 	0xFF8240
 #define VIDEO_REZ_REG_ADDR  	0xFF8260
 
+#define REG_SELECT_ADDR     0xFF8800
+#define REG_WRITE_ADDR      0xFF8802
+
 /** 
  * @brief MFP (Multifunction Peripheral) register addresses.
  */
