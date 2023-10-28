@@ -19,28 +19,27 @@ UINT8 read_psg(Register reg)
 
 void set_tone(Channel channel, UINT16 tuning) 
 {
-    static const Register FINE_TONE_REGS[] = { R0, R2, R4 };
-    static const Register ROUGH_TONE_REGS[] = { R1, R3, R5 };
     write_psg(FINE_TONE_REGS[channel], tuning >> 4 & 0x0F);
     write_psg(ROUGH_TONE_REGS[channel], tuning & 0x000F);
 }
 
-void set_volme(Channel channel, UINT8 volume)
+void set_volume(Channel channel, UINT8 volume)
 {
-    static const Register VOLUME_REGS[] = { R8, R9, RA };
     write_psg(VOLUME_REGS[channel], volume);
 }
 
 void enable_channel(Channel channel, UINT8 tone_on, UINT8 noise_on)
 {
-    UINT8 index = 3 * channel + tone_on + 2 * noise_on;
-    static const IOConfig CONFIGS[] = { A_NOISEON_TONEON, A_NOISEON_TONEOFF, A_NOISEOFF_TONEON, B_NOISEON_TONEON, B_NOISEON_TONEOFF, B_NOISEOFF_TONEON, C_NOISEON_TONEON, C_NOISEON_TONEOFF, C_NOISEOFF_TONEON };
+    UINT8 index;
+
+    index = 3 * channel + tone_on + 2 * noise_on;
     write_psg(R7, (!tone_on && !noise_on) ? IO_CONFIGS[OFF] : IO_CONFIGS[CONFIGS[index]]);
 }
 
 void stop_sound()
 {
-    for (UINT8 count = 1; count <= 0xD; ++count) {
+    UINT8 count;
+    for (count = 1; count <= 0xD; ++count) {
         write_psg((Register)count, 0);
     }
 }
@@ -59,7 +58,8 @@ void set_envelope(EnvShape shape, UINT16 sustain)
 
 void control_portA(UINT8 mask, UINT8 value)
 {
-    UINT8 current = read_psg(PORT_A);
+    UINT8 current;
+    current = read_psg(PORT_A);
     current = (current & mask) | value;
     write_psg(PORT_A, current);
 }
