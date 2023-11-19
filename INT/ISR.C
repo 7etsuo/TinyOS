@@ -1,15 +1,17 @@
 #include "ISR.H"
 #include "IRQ.H"
+
+#include "../VID/VIDEO.H"	/* invert_cursor() */
+#include "../KERN/KERNEL.H"	/* panic() */
+#include "../SCHD/PROC.H"	/* terminate() */
+
 #include "../TYPES.H"
 #include "../HAL/MFP.H"
 #include "../HAL/MEM_MAP.H"
 #include "../KB/IKBD.H"
-#include "../SCHD/PROC.H"
 #include "../SCHD/SCHED.H"
 #include "../KB/CONIO.H"
 #include "../SCHD/CPU.H"
-#include "../KERN/KERNEL.H"
-#include "../VID/VIDEO.H"
 #include "../HAL/ACIA.H"
 
 UINT16 * const vbl_counter = (UINT16 * const) VBL_COUNTER_ADDR;
@@ -22,13 +24,13 @@ void do_vbl_isr()
 	if (*kybd_auto_ch && ++(*kybd_auto_count) > 10)
 		input_enqueue(*kybd_auto_ch);
 
-	set_ipl(orig_ipl);
+	(void) set_ipl(orig_ipl);
 
 	if (!(++(*vbl_counter) & 0x001F))
 	{
-		set_ipl(7);
-		invert_cursor();
-		set_ipl(orig_ipl);
+		(void) set_ipl(7);
+		(void) invert_cursor();
+		(void) set_ipl(orig_ipl);
 	}
 }
 
@@ -36,6 +38,7 @@ void do_timer_A_isr(UINT16 sr)
 {
 	/* NOTE: timer A is very high priority.  Could use lower (e.g. C) */
 	/* NOTE: could lower 68000 IPL to 4 to allow higher priority IRQs */
+	(void) sr;
 
 	if (CURR_PROC->state == PROC_RUNNING)
 	{
@@ -48,8 +51,9 @@ void do_timer_A_isr(UINT16 sr)
 
 void do_exception_isr(UINT16 sr)
 {
-	if (sr & 0x2000)
+	if (sr & 0x2000) {
 		panic();
+	}
 
 	print_str_safe("fault in process ");
 	print_char_safe((char)(CURR_PROC->pid + '0'));
@@ -60,6 +64,10 @@ void do_exception_isr(UINT16 sr)
 
 void do_addr_exception_isr(UINT16 flags, UINT32 addr, UINT16 ir, UINT16 sr)
 {
+	(void) flags;
+	(void) addr; 
+	(void) ir;
+
 	do_exception_isr(sr);
 }
 
@@ -79,12 +87,12 @@ void do_ikbd_isr()
 			case 0:
 				if ((data & 0xFC) == 0xF8)
 					*kybd_isr_state = 1;
-				else if (data == 0x2A || data == 0x36)     /* [TO DO] incorporate shifting into autorepeat logic */
+					else if (data == 0x2A || data == 0x36)     /* [TO DO] incorporate shifting into autorepeat logic */
 					(*kybd_shifted)++;
-				else if (data == 0xAA || data == 0xB6)
+					else if (data == 0xAA || data == 0xB6)
 					(*kybd_shifted)--;
-				else if (!(data & 0x80))
-				{
+					else if (!(data & 0x80))
+					{
 					*kybd_auto_ch = scan2ascii[*kybd_shifted ? 1 : 0][data];
 
 					if (*kybd_auto_ch)
@@ -92,19 +100,19 @@ void do_ikbd_isr()
 						*kybd_auto_count = 0;
 						input_enqueue(*kybd_auto_ch);
 					}
-				}
-				else
-					*kybd_auto_ch = 0;
+					}
+					else
+				*kybd_auto_ch = 0;
 
-				break;
+			break;
 
 			case 1:
 				*kybd_isr_state = 2;
-				break;
+			break;
 
 			case 2:
 				*kybd_isr_state = 0;
-				break;
+			break;
 		}
 
 		/* [TO DO] write a "reset IKBD ACIA" function */

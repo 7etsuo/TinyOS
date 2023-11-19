@@ -37,15 +37,16 @@ struct process /* 102 bytes */
 extern UINT16 * const curr_proc;
 extern struct process * const proc; /* array of max_num_proc (4) process structures */
 
-void init_proc_table();
-void load(UINT16 i, void (*p)());
-void terminate();
+void init_proc_table(void);
+void load(UINT16, void (*)(void));
+void terminate(void);
 
-void do_exit();
-int do_get_pid();
-int do_create_process(UINT16 prog_num, UINT16 is_fg); /* [TODO]: we need create_process to return the int from this */
+void do_exit(void);
+int do_get_pid(void);
+int do_create_process(UINT16, UINT16); /* [TODO]: we need create_process to return the int from this */
 
-int set_kybd_fg_proc(int index);
-int find_empty_proc_slot();
+int set_kybd_fg_proc(int);
+int find_empty_proc_slot(void);
 
 #endif /* PROC_H */
+

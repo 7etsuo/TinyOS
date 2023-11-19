@@ -12,7 +12,7 @@ struct CPU_context     /* 70 bytes */
     UINT32 a0;
 };
 
-extern UINT16 read_SR();
+extern UINT16 read_SR(void);
 extern void write_SR(UINT16 sr);
 extern void load_cpu_context(struct CPU_context *);
 

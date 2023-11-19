@@ -17,7 +17,7 @@ void print_char_safe(char ch)
 {
 	UINT16 orig_ipl = set_ipl(7);     /* [TO DO] mask less aggressively? */
 	print_char(ch);
-	set_ipl(orig_ipl);
+	(void) set_ipl(orig_ipl);
 }
 
 void print_char(char ch)

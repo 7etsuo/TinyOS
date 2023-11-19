@@ -7,7 +7,6 @@
 
 extern IO_PORT8 MEM_CONFIG_REG;
 
-/* added by Mike Walker */
-void init_memory();
+void init_memory(void);
 
 #endif /* MEMORY_H */

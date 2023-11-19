@@ -31,16 +31,16 @@ extern UINT16 * const kybd_isr_state;
 /** 
  * @brief Interrupt service routine for vertical blank interrupt.
  */
-extern void vbl_isr();
+extern void vbl_isr(void);
 
 /** 
  * @brief Interrupt service routine for Timer A. 
  */
-extern void timer_A_isr();
+extern void timer_A_isr(void);
 
-extern void ikbd_isr();
-extern void exception_isr();
-extern void addr_exception_isr();
+extern void ikbd_isr(void);
+extern void exception_isr(void);
+extern void addr_exception_isr(void);
 
 /**
  * @brief Vertical Blank Interrupt Service Routine (VBL ISR) handler.
@@ -50,7 +50,7 @@ extern void addr_exception_isr();
  *
  * @note Consideration should be given to masking less aggressively in the future.
  */
-void do_vbl_isr();
+void do_vbl_isr(void);
 
 /**
  * @brief Handles the Timer A interrupt service routine.
@@ -68,6 +68,6 @@ void do_vbl_isr();
 void do_timer_A_isr(UINT16 sr);
 void do_exception_isr(UINT16 sr);
 void do_addr_exception_isr(UINT16 flags, UINT32 addr, UINT16 ir, UINT16 sr);
-void do_ikbd_isr();
+void do_ikbd_isr(void);
 
 #endif /* ISR_H */

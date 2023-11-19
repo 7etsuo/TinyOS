@@ -32,26 +32,26 @@
  * @{
  */
 
-extern void reboot();                 /**< System function to reboot the system. */
-extern void sys_reboot();            /**< System reboot function. */
+extern void reboot(void);                 /**< System function to reboot the system. */
+extern void sys_reboot(void);            /**< System reboot function. */
 
-extern void exit();                  /**< System function to exit a process. */
-extern void sys_exit();              /**< System exit function. */
+extern void exit(void);                  /**< System function to exit a process. */
+extern void sys_exit(void);              /**< System exit function. */
 
 extern void create_process(UINT16 prog_num, UINT16 is_fg);  /**< System function to create a new process. */
-extern void sys_create_process();    /**< System function to create a process. */
+extern void sys_create_process(void);    /**< System function to create a process. */
 
 extern void write(const char *buf, unsigned int len);       /**< System function to write data. */
-extern void sys_write();             /**< System write function. */
+extern void sys_write(void);             /**< System write function. */
 
 extern int read(char *buf, unsigned int len);               /**< System function to read data. */
-extern void sys_read();              /**< System read function. */
+extern void sys_read(void);              /**< System read function. */
 
-extern int get_pid();                /**< System function to get the process ID. */
-extern void sys_get_pid();           /**< System function to get process ID. */
+extern int get_pid(void);                /**< System function to get the process ID. */
+extern void sys_get_pid(void);           /**< System function to get process ID. */
 
-extern void yield();                 /**< System function for a process to yield its execution. */
-extern void sys_yield();             /**< System yield function. */
+extern void yield(void);                 /**< System function for a process to yield its execution. */
+extern void sys_yield(void);             /**< System yield function. */
 /** @} */
 
 #endif /* SYSCALL_H */

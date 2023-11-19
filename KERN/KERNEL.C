@@ -3,18 +3,22 @@
    NOTE ALSO THAT ISRs CAN NEST!
    */
 /* interface for memory configuration and management */
+#include "KERNEL.H"
 #include "../KB/IO.H"			/* init_IO() */
 #include "../KERN/MEMORY.H" 		/* init_memory() */
 #include "../VID/VIDEO.H"		/* init_video() */
 #include "../INT/IRQ.H"			/* init_vector_table() */
 #include "../KB/CONIO.H"		/* init_console() */
-#include "KERNEL.H"
 
 /* process table and scheduler */
 #include "../SCHD/PROC.H"		/* init_proc_table() and do_create_process() */
 #include "../SCHD/SCHED.H"		/* schedule() */
+#include "../SCHD/CPU.H"		/* schedule() */
 
 #include "../HAL/MEM_MAP.H"
+
+#include "REBOOT.H" /* for restart() which is actually in kern_asm.s */
+
 /* 600-7FF kernel stack (512 bytes) */
 UINT16 * const kernel_stack_top = (UINT16 *const) OS_RAM_TOP_ADDR; 
 

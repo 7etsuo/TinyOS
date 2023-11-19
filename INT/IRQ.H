@@ -78,7 +78,7 @@ extern Vector * const vector_table;
  *
  * This function sets up the default exception handlers for the system.
  */
-void init_vector_table();
+void init_vector_table(void);
 
 /** @} */
 #endif /* INTERRUPT_H */

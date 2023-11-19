@@ -4,10 +4,9 @@
 #include "../TYPES.H"
 
 extern UINT16 * const kernel_stack_top; 
-extern void restart();
 
-void init();
-void panic();
+void init(void);
+void panic(void);
 
 #endif /* KERNEL_H */
 

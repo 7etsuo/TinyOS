@@ -22,7 +22,7 @@ extern UINT8  * const kybd_buff; /* 128 byte circular queue - must be a power of
 
 extern const UINT8 scan2ascii[2][128];
 
-void input_enqueue(char ch);
+void input_enqueue(char);
 
 #endif /* IKBD_H */
 

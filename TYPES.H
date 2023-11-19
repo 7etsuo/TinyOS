@@ -8,7 +8,7 @@ typedef unsigned char UINT8;
 typedef unsigned int  UINT16;
 typedef unsigned long UINT32;
 
-typedef void (*Vector)();
+typedef void (*Vector)(void);
 typedef volatile UINT8 * const IO_PORT8;
 typedef volatile const UINT8 * const IO_PORT8_RO;
 

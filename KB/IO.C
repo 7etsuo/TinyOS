@@ -1,7 +1,7 @@
-#include "io.h"
-#include "../hal/mfp.h"
-#include "../audio/midi.h"
-#include "../kb/ikbd.h"
+#include "IO.H"
+#include "../HAL/MFP.H"
+#include "../AUDIO/MIDI.H"
+#include "../KB/IKBD.H"
 
 void init_IO()
 {
