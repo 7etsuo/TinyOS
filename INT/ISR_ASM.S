@@ -19,7 +19,7 @@ _exception_isr:
 	jsr	_do_exception_isr	; doesn't return
 	jsr	_panic
 
-_addr_exception_isr:
+addr_exception_isr:
 	jsr	_do_addr_exception_isr	; doesn't return
 	jsr	_panic
 

@@ -1,5 +1,6 @@
 #include "CPU.H"
 #include "../TYPES.H"
+#include "../GLOBAL.H"
 
 UINT16 set_ipl(UINT16 ipl)
 {

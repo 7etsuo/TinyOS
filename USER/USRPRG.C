@@ -1,4 +1,4 @@
-#include "../KERN/SYSCALL.H"
+#include "../GLOBAL.H"
 #include "../TYPES.H"
 #include "USRPRG.H"
 
@@ -18,7 +18,7 @@ void shell()
 	while (1)
 	{
 		write("\r\n$ ", 4);
-		read(buf, SHELL_BUF_LEN);
+		(void) read(buf, SHELL_BUF_LEN);
 
 		command = *buf - '0';
 
@@ -56,7 +56,7 @@ void user_program_3()
 		printed++;
 
 		for (i = 0; i < 10000L; i++)
-			;
+		{;}
 	}
 
 	exit();
@@ -70,11 +70,12 @@ void user_program_4()
 	while (1)
 	{
 		for (i = 0; i < 500000L; i++)
-			;
+		{;}
 
 		write("D", 1);
 
-		if (++printed == 10) {
+		if (++printed == 10) 
+		{
 			printed/0;
 		}
 	}

@@ -10,11 +10,7 @@
  * 
  * The table outlines the exception vectors used for various interrupts.
  * 
- * @{
  */
-
-
-/** @} */
 
 /** 
  * @brief Counter for vertical blank interrupts. 
@@ -28,19 +24,6 @@ extern UINT16 * const vbl_counter;
  */
 extern UINT16 * const kybd_isr_state; 
 
-/** 
- * @brief Interrupt service routine for vertical blank interrupt.
- */
-extern void vbl_isr(void);
-
-/** 
- * @brief Interrupt service routine for Timer A. 
- */
-extern void timer_A_isr(void);
-
-extern void ikbd_isr(void);
-extern void exception_isr(void);
-extern void addr_exception_isr(void);
 
 /**
  * @brief Vertical Blank Interrupt Service Routine (VBL ISR) handler.
@@ -65,9 +48,9 @@ void do_vbl_isr(void);
  * @note The 68000's Interrupt Priority Level (IPL) could potentially be lowered to 4 to allow higher 
  *       priority IRQs to preempt this ISR.
  */
-void do_timer_A_isr(UINT16 sr);
-void do_exception_isr(UINT16 sr);
-void do_addr_exception_isr(UINT16 flags, UINT32 addr, UINT16 ir, UINT16 sr);
+void do_timer_A_isr(UINT16);
+void do_exception_isr(UINT16);
+void do_addr_exception_isr(UINT16, UINT32, UINT16, UINT16);
 void do_ikbd_isr(void);
 
 #endif /* ISR_H */

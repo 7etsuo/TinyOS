@@ -66,8 +66,8 @@
  * 
  * @brief Variables and functions related to handling interrupts.
  * 
- * @{
  */
+
 /** 
  * @brief Pointer to the system's vector table. 
  */
@@ -80,6 +80,5 @@ extern Vector * const vector_table;
  */
 void init_vector_table(void);
 
-/** @} */
 #endif /* INTERRUPT_H */
 

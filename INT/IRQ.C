@@ -1,31 +1,41 @@
+#include "../GLOBAL.H"
+#include "../TYPES.H"
+
 #include "../KERN/KERNEL.H"
 #include "../KERN/SYSCALL.H"
 #include "../HAL/MEM_MAP.H"
 #include "../KB/IKBD.H"
 #include "../VID/VIDEO.H"
-#include "ISR.H"
+
 #include "IRQ.H"
 
 Vector * const vector_table = (Vector * const) VECTOR_TABLE_ADDR;
+
+void addr_exception_isr();
 
 void init_vector_table()
 {
 	int num;
 
-	for (num = 2; num < 80; num++)
+	for (num = 2; num < 80; num++) {
 		vector_table[num] = panic;
+	}
 
-	for (num = 2; num <= 3; num++)
+	for (num = 2; num <= 3; num++) {
 		vector_table[num] = addr_exception_isr;
+	}
 
-	for (num = 4; num <= 8; num++)
+	for (num = 4; num <= 8; num++) {
 		vector_table[num] = exception_isr;
+	}
 
-	for (num = 10; num <= 11; num++)
+	for (num = 10; num <= 11; num++) {
 		vector_table[num] = exception_isr;
+	}
 
-	for (num = 32; num <= 47; num++)
+	for (num = 32; num <= 47; num++) {
 		vector_table[num] = exception_isr;
+	}
 
 	vector_table[VBL_VECTOR]     = vbl_isr;
 	vector_table[TRAP_0_VECTOR]  = sys_reboot;

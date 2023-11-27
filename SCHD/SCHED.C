@@ -2,6 +2,7 @@
 #include "PROC.H"
 #include "CPU.H"
 #include "../HAL/MEM_MAP.H"
+#include "../GLOBAL.H"
 
 /* 0=no, 1=yes, 2=yes with eventual trap restart (blocking) */
 UINT16 * const resched_needed = (UINT16 *const) RESCHED_NEEDED_ADDR; 
@@ -14,7 +15,7 @@ void schedule()
 
 	while (1)
 	{
-		set_ipl(7);
+		(void) set_ipl(7);
 
 		for (i = 0; i < MAX_NUM_PROC; i++)
 		{

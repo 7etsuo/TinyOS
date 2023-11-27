@@ -2,12 +2,20 @@
 #define PROC_H
 
 #include "../TYPES.H"
-#include "CPU.H"
 
 #define PROC_INVALID 0
 #define PROC_READY   1
 #define PROC_RUNNING 2
 #define PROC_BLOCKED 3
+
+struct CPU_context     /* 70 bytes */
+{
+    UINT32 pc;
+    UINT16 sr;
+    UINT32 usp;
+    UINT32 d0_to_7_a1_to_6[14];
+    UINT32 a0;
+};
 
 struct process /* 102 bytes */
 {
@@ -31,11 +39,11 @@ struct process /* 102 bytes */
 	   */
 };
 
-#define MAX_NUM_PROC 4 /* must be a power of 2 because of the modulo operation in the scheduler */
-#define CURR_PROC (proc + *curr_proc)
-
 extern UINT16 * const curr_proc;
 extern struct process * const proc; /* array of max_num_proc (4) process structures */
+
+#define MAX_NUM_PROC 4 /* must be a power of 2 because of the modulo operation in the scheduler */
+#define CURR_PROC (proc + *curr_proc)
 
 void init_proc_table(void);
 void load(UINT16, void (*)(void));

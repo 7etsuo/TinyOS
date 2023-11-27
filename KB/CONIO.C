@@ -1,5 +1,7 @@
 #include "IKBD.H"
+
 #include "CONIO.H"
+#include "../GLOBAL.H"
 #include "../TYPES.H"
 #include "../SCHD/PROC.H"
 #include "../SCHD/SCHED.H"
@@ -29,9 +31,9 @@ void print_char(char ch)
 	   TAB(9),
 	   VT(11),
 	   DEL(127)
-	   */
+	*/
 
-	if (IS_PRINTABLE(ch))
+	if ((IS_PRINTABLE(ch)))
 	{
 		plot_glyph(ch);
 		(*console_x_p)++;
@@ -48,14 +50,15 @@ void print_char(char ch)
 	{
 		clear_cursor();
 
-		if (*console_x_p > 0)
+		if (*console_x_p > 0) 
+		{
 			(*console_x_p)--;
+		}
 		else
 		{
 			(*console_x_p) = 79;
 			(*console_y_p)--;
 		}
-
 		plot_glyph(' ');
 	}
 	else if (ch == CHAR_LF)					     /* LINE FEED (LF) */
@@ -90,15 +93,18 @@ void print_str_safe(char *str)
 {
 	UINT16 orig_ipl = set_ipl(7);     /* [TO DO] mask less aggressively? */
 	print_str(str);
-	set_ipl(orig_ipl);
+	(void) set_ipl(orig_ipl);
 }
 
 void print_str(char *str)
 {
 	register char ch;
 
-	while ((ch = *(str++)))
+	while (1) {
+		ch = *(str++);
+		if (!ch) break;
 		print_char(ch);
+	}
 }
 
 void init_console()
@@ -123,20 +129,23 @@ void do_write(const char *buf, unsigned int len)
 {
 	/* [TO DO] validate buf */
 
-	for (; len > 0; len--)
+	for (; len > 0; len--) {
 		print_char_safe(*(buf++));
+	}
 }
 
 int do_read(char *buf, unsigned int len)
 {
 	int num_read = 0, cr_hit = 0;
 	UINT16 orig_ipl = set_ipl(6);   /* need to mask both MFP IRQ and VBL IRQ */
-									/* [TO DO] mask above less aggressively */
+	/* [TO DO] mask above less aggressively */
 
 	/* [TO DO] validate buf */
 
 	if (*curr_proc == *kybd_fg_proc)
+	{
 		if (*kybd_num_lines)
+		{
 			while (len > 0 && !cr_hit)
 			{
 				if ((buf[num_read++] = kybd_buff[*kybd_buff_head]) == '\r')
@@ -149,13 +158,15 @@ int do_read(char *buf, unsigned int len)
 				(*kybd_buff_fill)--;
 				len--;
 			}
+		}
 		else
 		{
 			*kybd_blocked_proc = *curr_proc;
 			CURR_PROC->state = PROC_BLOCKED;
 			*resched_needed = YES_BLOCK;		/* signals the trap will need to be restarted */
-												/* [TO DO] examine completing system call in bottom half, instead */	
+			/* [TO DO] examine completing system call in bottom half, instead */	
 		}
+	}
 	else
 	{
 		print_str_safe("read attempted by background process ");
@@ -165,7 +176,7 @@ int do_read(char *buf, unsigned int len)
 		terminate();
 	}
 
-	set_ipl(orig_ipl);
+	(void) set_ipl(orig_ipl);
 
 	return num_read;
 }

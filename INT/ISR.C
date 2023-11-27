@@ -6,6 +6,8 @@
 #include "../SCHD/PROC.H"	/* terminate() */
 
 #include "../TYPES.H"
+#include "../GLOBAL.H"
+
 #include "../HAL/MFP.H"
 #include "../HAL/MEM_MAP.H"
 #include "../KB/IKBD.H"

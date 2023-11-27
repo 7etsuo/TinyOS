@@ -4,6 +4,10 @@
    */
 /* interface for memory configuration and management */
 #include "KERNEL.H"
+
+#include "../GLOBAL.H"
+#include "../TYPES.H"
+
 #include "../KB/IO.H"			/* init_IO() */
 #include "../KERN/MEMORY.H" 		/* init_memory() */
 #include "../VID/VIDEO.H"		/* init_video() */
@@ -16,8 +20,6 @@
 #include "../SCHD/CPU.H"		/* schedule() */
 
 #include "../HAL/MEM_MAP.H"
-
-#include "REBOOT.H" /* for restart() which is actually in kern_asm.s */
 
 /* 600-7FF kernel stack (512 bytes) */
 UINT16 * const kernel_stack_top = (UINT16 *const) OS_RAM_TOP_ADDR; 
@@ -41,7 +43,7 @@ void init()
 	init_console();	
 	init_proc_table();
 
-	do_create_process(0, 1);     /* load shell */
+	(void) do_create_process(0, 1);     /* load shell */
 	schedule();
 }
 
@@ -49,7 +51,7 @@ void panic()
 {
 	volatile UINT32 i;
 
-	set_ipl(7);
+	(void) set_ipl(7);
 	print_str("kernel panic!");
 
 	for (i = 0; i < 100000L; i++) {;}

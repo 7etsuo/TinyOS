@@ -1,6 +1,7 @@
 #include "PROC.H"
+#include "CPU.H"
 #include "SCHED.H"
-#include "../SCHD/CPU.H"
+
 #include "../TYPES.H"
 #include "../VID/VIDEO.H"
 #include "../KB/IKBD.H"

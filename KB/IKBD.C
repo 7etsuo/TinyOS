@@ -1,4 +1,6 @@
 #include "CONIO.H"
+
+#include "../TYPES.H"
 #include "../HAL/ACIA.H"
 #include "../KB/IKBD.H"
 #include "../SCHD/PROC.H"

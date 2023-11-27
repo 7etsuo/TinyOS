@@ -12,8 +12,7 @@ void print_str(char *);
 
 void print_char_safe(char);
 void print_str_safe(char *);
-
-void do_write(const char, unsigned int);
+void do_write(const char *, unsigned int);
 
 /**
  * @brief Reads keyboard input into a buffer.
@@ -32,7 +31,7 @@ void do_write(const char, unsigned int);
  * `resched_needed` to `YES_BLOCK` if there are no lines to read, signaling that 
  * the system call will need to be restarted.
  */
-int do_read(char, unsigned int);
+int do_read(char *, unsigned int);
 
 void init_console(void);
 

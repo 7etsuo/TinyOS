@@ -37,7 +37,5 @@
 #define	TINYOS_REBOOT_CMD_SW_SUSPEND	0xD000FCE2
 #define	TINYOS_REBOOT_CMD_KEXEC		0x45584543
 
-extern void restart(void);
-
 #endif /* REBOOT_H */
 
